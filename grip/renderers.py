@@ -8,10 +8,12 @@ import requests
 
 try:
     import markdown
+    IMPORTED_MARKDOWN = True
     from .vendor.mdx_urlize import UrlizeExtension
 except ImportError:
     markdown = None
     UrlizeExtension = None
+    IMPORTED_MARKDOWN = False
 
 from .constants import DEFAULT_API_URL
 from .patcher import patch
@@ -97,7 +99,7 @@ class OfflineRenderer(ReadmeRenderer):
         """
         Renders the specified markdown content and embedded styles.
         """
-        if markdown is None:
+        if not IMPORTED_MARKDOWN:
             import markdown
         if UrlizeExtension is None:
             from .mdx_urlize import UrlizeExtension
