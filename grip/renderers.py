@@ -101,7 +101,6 @@ class OfflineRenderer(ReadmeRenderer):
         """
         if not IMPORTED_MARKDOWN:
             import markdown
-        if UrlizeExtension is None:
             from .mdx_urlize import UrlizeExtension
         return markdown.markdown(text, extensions=[
             'fenced_code',
